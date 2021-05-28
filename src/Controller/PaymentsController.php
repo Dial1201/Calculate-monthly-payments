@@ -31,6 +31,7 @@ class PaymentsController extends AbstractController
     public function index(Request $request): Response
     {
         // creation du formulaire de calcul
+        $result = null;
         $calculRate = new CalculRate;
         $form = $this->createForm(CalculatorType::class, $calculRate);
 
