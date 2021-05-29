@@ -14,12 +14,11 @@ RUN apt update -qq > /dev/null && apt --yes install --no-install-recommends \
     && apt --yes autoremove && apt --yes clean
 
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && curl --silent --show-error https://get.symfony.com/cli/installer | bash \
-    && mv ~/.symfony/bin/symfony /usr/local/bin/ \
+    && curl --silent --show-error --location \
+    https://github.com/symfony/cli/releases/download/v4.25.2/symfony_linux_amd64.gz > /tmp/symfony_linux_amd64.gz \
+    && zcat /tmp/symfony_linux_amd64.gz > /usr/local/bin/symfony \
+    && chmod +x /usr/local/bin/symfony \
     && docker-php-ext-install \
-    mbstring \
-    mysqli \
-    pdo \
     pdo_mysql
 
 WORKDIR /app
