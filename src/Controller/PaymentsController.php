@@ -45,11 +45,6 @@ class PaymentsController extends AbstractController
             $term = $calculRate->getTerm();
             $rate = $calculRate->getRate();
             $result = $this->calculator->calcul($loan, $term, $rate);
-
-            // j'enregistre en bdd
-            $this->em->persist($calculRate);
-
-            $this->em->flush();
         }
 
         return $this->render('payments/index.html.twig', [

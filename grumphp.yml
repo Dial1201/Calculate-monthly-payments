@@ -1,3 +1,6 @@
 grumphp:
     tasks: 
         phplint: ~ 
+        phpunit: ~
+    ascii : ~
+        
